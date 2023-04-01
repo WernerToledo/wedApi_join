@@ -498,6 +498,7 @@ namespace wedApi_join.Controllers
         }
         //tipo equipo
 
+        /*
         //estados reserva
         //insert
         [HttpPost]
@@ -820,6 +821,7 @@ namespace wedApi_join.Controllers
             return Ok(carrera);
         }
         //carreras
+        */
 
     }
 }
