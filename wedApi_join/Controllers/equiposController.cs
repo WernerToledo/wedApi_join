@@ -44,6 +44,34 @@ namespace wedApi_join.Controllers
             }
             return BadRequest();
         }
+        //union de las tablas
+        [HttpGet]
+        [Route("GetAllsecond")]
+        public IActionResult Getal()
+        {
+            var equipos = (from u in _equipoContext.usuarios
+                           join ca in _equipoContext.carreras
+                           on u.carrera_id equals ca.carrera_id
+                           join f in _equipoContext.facultades
+                           on ca.facultad_id equals f.facultad_id
+                           join r in _equipoContext.reservas
+                           on u.usuario_id equals r.usuario_id
+                           join est in _equipoContext.estados_reserva
+                           on r.estado_reserva_id equals est.estado_res_id
+                           select new
+                           {
+                               u.nombre,
+                               ca.nombre_carrera,
+                               f.nombre_facultad,
+                               est.estado,
+                               r.fecha_salida
+                           }).ToList();
+            if (equipos.Any())
+            {
+                return Ok(equipos);
+            }
+            return BadRequest();
+        }
 
         [HttpGet]
         [Route("GetAllOnly1")]
@@ -792,33 +820,5 @@ namespace wedApi_join.Controllers
         }
         //carreras
 
-        //union de las tablas
-        [HttpGet]
-        [Route("GetAllsecond")]
-        public IActionResult Getal()
-        {
-            var equipos = (from u in _equipoContext.usuarios
-                           join ca in _equipoContext.carreras
-                           on u.carrera_id equals ca.carrera_id
-                           join f in _equipoContext.facultades
-                           on ca.facultad_id equals f.facultad_id
-                           join r in _equipoContext.reservas
-                           on u.usuario_id equals r.usuario_id
-                           join est in _equipoContext.estados_reserva
-                           on r.estado_reserva_id equals est.estado_res_id
-                           select new
-                           {
-                               u.nombre,
-                               ca.nombre_carrera,
-                               f.nombre_facultad,
-                               est.estado,
-                               r.fecha_salida
-                           }).ToList();
-            if (equipos.Any())
-            {
-                return Ok(equipos);
-            }
-            return BadRequest();
-        }
     }
 }
