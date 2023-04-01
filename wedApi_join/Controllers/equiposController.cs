@@ -7,6 +7,7 @@ namespace wedApi_join.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //rama
     public class equiposController : ControllerBase
     {
         private readonly equiposContext _equipoContext;
