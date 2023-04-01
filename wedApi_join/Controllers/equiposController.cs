@@ -24,7 +24,7 @@ namespace wedApi_join.Controllers
                            join t in _equipoContext.tipo_equipo
                            on e.tipo_equipo_id equals t.id_tipo_equipo
                            join m in _equipoContext.marcas
-                           on e.marca_id equals m.id_marca
+                           on e.marca_id equals m.id_marcas
                            join es in _equipoContext.estados_equipo
                            on e.estado_equipo_id equals es.id_estados_equipo
 
@@ -93,7 +93,7 @@ namespace wedApi_join.Controllers
                            join t in _equipoContext.tipo_equipo
                            on e.tipo_equipo_id equals t.id_tipo_equipo
                            join m in _equipoContext.marcas
-                           on e.marca_id  equals m.id_marca
+                           on e.marca_id  equals m.id_marcas
                            join es in _equipoContext.estados_equipo
                            on e.estado_equipo_id equals es.id_estados_equipo
 
@@ -129,7 +129,7 @@ namespace wedApi_join.Controllers
                            join t in _equipoContext.tipo_equipo
                            on e.tipo_equipo_id equals t.id_tipo_equipo
                            join m in _equipoContext.marcas
-                           on e.marca_id equals m.id_marca
+                           on e.marca_id equals m.id_marcas
                            join es in _equipoContext.estados_equipo
                            on e.estado_equipo_id equals es.id_estados_equipo
 
@@ -165,7 +165,7 @@ namespace wedApi_join.Controllers
                            join t in _equipoContext.tipo_equipo
                            on e.tipo_equipo_id equals t.id_tipo_equipo
                            join m in _equipoContext.marcas
-                           on e.marca_id equals m.id_marca
+                           on e.marca_id equals m.id_marcas
                            join es in _equipoContext.estados_equipo
                            on e.estado_equipo_id equals es.id_estados_equipo
                            where e.id_equipos == id
@@ -201,7 +201,7 @@ namespace wedApi_join.Controllers
                            join t in _equipoContext.tipo_equipo
                            on e.tipo_equipo_id equals t.id_tipo_equipo
                            join m in _equipoContext.marcas
-                           on e.marca_id equals m.id_marca
+                           on e.marca_id equals m.id_marcas
                            join es in _equipoContext.estados_equipo
                            on e.estado_equipo_id equals es.id_estados_equipo
                            select new
@@ -393,7 +393,7 @@ namespace wedApi_join.Controllers
         public IActionResult updateMarca(int id, [FromBody] marcas marcas)
         {
             marcas? marcasAct = (from e in _equipoContext.marcas
-                                                 where e.id_marca == id
+                                                 where e.id_marcas == id
                                                  select e).FirstOrDefault();
 
             if (marcasAct == null)
@@ -415,7 +415,7 @@ namespace wedApi_join.Controllers
         {
             //? para decirle que puede ser nulleable
             marcas? marca = (from e in _equipoContext.marcas
-                                             where e.id_marca == id
+                                             where e.id_marcas == id
                                              select e).FirstOrDefault();
 
             if (marca == null)
